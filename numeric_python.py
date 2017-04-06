@@ -41,10 +41,10 @@ np_numbers2d * 2  # array([[2, 4, 6], [22, 44, 66]])
 np_numbers2d * np.array([1, 0.5, 2])  # array([[1., 1., 6.], [11., 11., 66.]])
 
 # Statistics
-np.mean(np_numbers2d[1])
-np.median(np_numbers2d[1])
-np.corrcoef(np_numbers2d[0], np_numbers2d[1])
-np.std(np_numbers2d[1])
+np.mean(np_numbers)  # 3 (średnia arytmetyczna, average)
+np.median(np_numbers)  # 3 (mediana, median)
+np.corrcoef(np_numbers2d[0], np_numbers2d[1])  # array([[1., 1.],[1., 1.]]) # (korelacja, correlation)
+np.std(np_numbers)  # 1.4142135623730951 (odchylenie standardowe, standard deviation)
 np.sum
 np.sort
 
