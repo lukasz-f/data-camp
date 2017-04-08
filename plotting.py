@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
 year = [1950, 2000, 2050, 2100]
 pop = [2.53, 6.13, 9.55, 10.85]
@@ -23,8 +22,13 @@ plt.xscale('log')  # Put x-axis on logarithmic scale
 plt.show()
 
 numbers = [0, 0.6, 1.4, 1.6, 2.2, 2.5, 2.6, 3.2, 3.5, 3.9, 4.2, 6]
-plt.scatter(year, pop, s=numbers)  # Dots size corresponds to numbers
+colors = ['red', 'green', 'blue', 'yellow']
+# Dots size corresponds to numbers with bubbles color and opacity changed
+plt.scatter(year, pop, s=numbers, c=colors, alpha=0.8)
 plt.xscale('log')  # Put x-axis on logarithmic scale
+plt.text(1950, 2.53, 'Start')  # Add word to plot
+plt.text(2050, 9.55, 'Stop')
+plt.grid(True)  # Draw gridlines
 plt.show()
 
 # Histogram
