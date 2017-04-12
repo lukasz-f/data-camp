@@ -1,4 +1,4 @@
-,cars_per_cap,country,drives_right
+country_id,cars_per_cap,country,drives_right
 US,809,United States,True
 AUS,731,Australia,False
 JAP,588,Japan,False
