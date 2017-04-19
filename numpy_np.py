@@ -78,6 +78,7 @@ np_numbers2d[1,:]  # array([11, 22, 33])
 np_numbers2d[1][2]  # 33
 np_numbers2d[1, 2]  # 33
 np_numbers2d[:, 2]  # array([3, 33])
+np_numbers2d[:, 2, np.newaxis]  # array([[3], [33]])
 
 # Statistics
 np.mean(np_numbers)  # 3 (średnia arytmetyczna, average)
@@ -148,3 +149,8 @@ np.minimum([2, 3, 4], [1, 5, 2])  # array([1, 3, 2])
 np.apply_along_axis(np.mean, 0, np_numbers2d)  # array([6., 12., 18.])
 np.apply_along_axis(np.mean, 1, np_numbers2d)  # array([2., 22.])
 np.unique(np.array([1, 3, 1, 2, 4, 1, 2, 3]))  # array([1, 2, 3, 4])
+
+np.where(np_numbers2d > 5)  # (array([1, 1, 1]), array([0, 1, 2]))
+np_numbers2d[np.where(np_numbers2d > 5)] = 99  # array([[1, 2, 3], [99, 99, 99]])
+np_numbers2d[np.where(np_numbers2d > 5)]  # array([99, 99, 99])
+np_numbers2d[np_numbers2d > 5]  # array([99, 99, 99])
