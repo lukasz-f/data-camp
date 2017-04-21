@@ -1,0 +1,75 @@
+// show database names
+> show dbs
+
+// show collections in current database
+> show collections
+
+// show users in current database
+> show users
+
+// show current database
+> db
+
+// set any database to current database
+> use <db name>
+
+// create operation
+> student = { "name": "binit", "age": 24, "subjects": ["math", "science", "litrature"] }
+> db.school.insert(student)
+> student1 = { "name": "ashok", "age": 28, "subjects": ["math", "science", "litrature"] }
+> db.school.insert(student1)
+> student2 = { "name": "nitish", "age": 28 }
+> db.school.insert(student2)
+
+// read operation
+// findOne() takes first argument as a query string
+> db.school.findOne({"name": "binit"})
+> db.school.findOne({"name": "binit", "age": 25})
+
+// findOne() takes 2nd argument as which fields you want to retrive
+> db.school.findOne({"name": "binit"}, {"name": true})
+> db.school.findOne({"name": "binit"}, {"name": true, "_id": false})
+
+// find all documents
+> db.school.find()
+
+// pretty() method get rows in more readable way
+> db.school.find().pretty()
+
+// querying inside array
+> db.school.find({"subjects": "math"})
+
+// $gt and $lt operators
+> db.school.find({"age": {$gt: 20}})
+> db.school.find({"age": {$gt: 24, $lte: 28}})
+
+// $regex and $exists operator
+> db.school.find({subjects: {$exists: true}})
+> db.school.find({name: {$regex: "a"}})
+
+// $or operator
+> db.school.find({$or: [{"name": "binit"}, {"age": {$gte:28}}]})
+
+// $in operator
+> db.school.find({"name": {$in : ["binit", "nitish"]}})
+
+// update operation (replace everything except the primary key)
+> db.school.update({"name": "nitish"}, {"name": "nitishk", "profession": "student"})
+
+// $set operator (replaces the key we wanted to replace)
+> db.school.update({"name": "binit"}, {$set: {"age": 34}})
+
+// $unset operator (remove certain field from a document)
+> db.school.update({"name": "binit"}, { $unset: {"age": 1}})
+
+// upsert (update or insert)
+> db.school.update({"name":"ankur"}, {$set: {"age": 23}}, {upsert: true})
+
+// update all document
+> db.school.update({}, {$set: {"title": "Er"}}, {multi: true})
+
+// delete operation
+> db.school.remove({"name": "ankur"})
+
+// delete all document
+> db.school.remove({})
