@@ -1,0 +1,18 @@
+Zmiana hasła usera:
+mysqladmin -u root -p'?D:3=q-RM>;x' password NOWE_HASLO
+
+Podłączenie do bazy jako user root:
+mysql -p -u root
+
+Import bazy danych northwind:
+cd mywind
+mysql -u root -p < ./northwind-default-current-timestamp.sql
+mysql -u root -p < ./northwind-data.sql
+
+Podstawowe informacje o bazie danych:
+SHOW databases;
+CREATE DATABASE my_database;
+USE my_database;
+SHOW tables;
+
+Łączymy sie do konkretnej bazy w MySQLWorkbench lub PyCharm i działamy :) lub w Pythonie
