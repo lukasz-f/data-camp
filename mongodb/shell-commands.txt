@@ -1,3 +1,12 @@
+// start MongoDB Server
+$ mongod
+
+// import data to db
+$ mongoimport --db pySamples --collection movies movies.json --jsonArray --drop
+
+// run MongoDB Shell
+$ mongo
+
 // show database names
 > show dbs
 
@@ -58,6 +67,7 @@
 
 // $set operator (replaces the key we wanted to replace)
 > db.school.update({"name": "binit"}, {$set: {"age": 34}})
+> db.school.update({"name": "binit"}, {$set: {"subjects": ["math", "science"]}})
 
 // $unset operator (remove certain field from a document)
 > db.school.update({"name": "binit"}, { $unset: {"age": 1}})
@@ -73,3 +83,39 @@
 
 // delete all document
 > db.school.remove({})
+
+// limit result
+> db.school.find().limit(5)
+
+// sort result
+> db.school.find().sort({name:-1})
+
+//
+> db.movies.find({"starring.actor": "Tom Hanks"})
+
+// count result
+> db.school.find({"subjects": "math"}).count()
+> db.school.count({"subjects": "math"})
+
+// distinct
+> db.school.distinct("age")
+
+// Agreagacja - operatory
+$match =where
+$group =group by
+$match =having
+$project =select
+$sort =order by
+$limit =limit
+$sum =sum
+$sum =count
+$unwind ~join (rozwija w json element klucz:tablica na powielone elementy klucz:wartosc; klucz jest wtedy powielony w jsonie)
+$sample
+$lookup
+
+db.movies.aggregate([
+    {$match: {name: 'Forrest Gump'}},
+    {$project: {'starring': 1, '_id': 0}},
+    {$unwind: '$starring'},
+    {$project: {'name': '$starring.actor'}}
+])
