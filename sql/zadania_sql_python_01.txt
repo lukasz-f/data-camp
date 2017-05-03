@@ -1,0 +1,17 @@
+1. Stworzyć skrypt, który pobierze dane wszystkich zamówień 
+i zapisze je w pliku w formacie CSV (Comma Separated Values).
+- plik powinien mieć nazwę orders.csv
+- Pierwszy wiersz pliku powinien zawierać nazwy kolumn z bazy danych oddzielone przecinkami.
+- Kolejne wiersze powinny zawierać dane z bazy oddzielone przecinkami.
+- Po zapisie pliku skrypt powinien wyświetlić komunikat o ilości zapisanych wierszy.
+
+2. Na podstawie wcześniej stworzonego skryptu należy stworzyć funkcję, która:
+- Będzie nazywała się query_to_csv
+- Będzie pobierała 2 parametry zapytanie SQL oraz nazwę pliku wyjściowego.
+- Dla dowolnego zapytania będzie zapisywała jego wyniki w pliku csv o podanej nazwie
+  wg. reguł z poprzedniego zadania.
+
+3. Zmodyfikować funkcję tak, aby korzystała z modułu csv z biblioteki standardowej Pythona
+zamiast "zwykłego" zapisu do pliku.
+
+UWAGA: Do rozwiązania zadania mogą być przydatne atrybuty kursora .description oraz .rowcount.
