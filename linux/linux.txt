@@ -1,0 +1,155 @@
+echo  # pisze na ekran
+
+cd FOLDER  # przejscie do wskazanego katalogu
+cd  # przejscie do katalogu domowego
+
+ls     # listuje pliki i foldery
+ls -l  # wyswietla rozmiar, date modyfikacji, nazwe i wlasciciela pliku
+ls -a  # wyswietla pliki ukryte
+ls -la # laczenie parametrow
+ls -h  # wyswietla rozmiary plikow zrozumiale dla ludzi
+ls -F  # wyswietla znak '/' czy folderach
+ls -t  # sortuje po ostatnio modyfikowanych
+ls -S  # sortuje po wielkosci pliku
+
+uprawnienia na katalogu:
+- r odczyt
+- w zapis
+- x wejscie do katalogu
+
+man ls
+
+mkdir FOLDER  # tworzy katalog
+mkdir -p FOLDER1/FOLDER1  # tworzy wszystkie nieistniejace foldery w sciezce
+
+rmdir  # usuwa pusty katalog
+
+pwd  # wyswietla biezaca sciezke
+
+cp SRC DST  # kopiuje plik
+cp -r  # kopiowanie katalogow z zawartoscia
+
+mv SRC DST  # przenosi plik, zmienia nazwe
+
+rm FILE  # usuwa plik
+rm -r  # usuwa katalog z zawartoscia (recursive)
+rm -f  # nie pyta o potwierdzenie (force)
+
+Wildcards:
+* - wszystkie znaki
+? - jeden znak
+
+file PATH  # wyswietla info o pliku
+touch PATH # tworzy plik lub aktualizuje date dostepu do pliku
+
+ctrl+r - przeszukiwanie historii polecen
+strzalka gora/dol - przegladanie historii polecen
+tab - autouzupelnianie
+
+chmod [ugoa] [+-] [rwxSt]  # zmiana praw dostepu
+chmod o+w ./myfile
+chmod go-x ./myfile
+chmod a+r ./myfile
+chmod a+x ./myscript.py
+chown OWNER:GROUP FILE  # zmiana wlasciciela i grupy pliku
+chown -r  # dla wielu plikow i folderow
+
+clear  # czysci ekran
+
+cat OPTIONS FILES  # wyswietla zawartosc pliku, laczy zawartosc kilku plikow
+cat -n  # wyswietla numery linii
+
+tac  # wyswietla zawartosc pliku od konca
+
+more OPTIONS FILES  # wyswietla plik ze stronicowanie
+less OPTIONS FILES  # lepsza wersja more
+
+tail -n 2 file.txt  # wyswietla linie z konca pliku
+head  # wyswietla linie z poczatku pliku
+cat -n sherlock.txt | head -n 10 | tail -n 9  # wyswietlenie linie od 2 do 10
+
+sort -f file.txt  # sortuje linie z pliku txt
+sort -n  # sortuje liczby
+sort -r  # sortowanie odwrocone
+
+uniq  # wyswietla linie z pliku bez duplikatow
+
+wc  # liczy slowa, linie, znaki
+wc -l  # linie
+wc -w  # slowa
+wc -m  # znaki
+
+seq 10  # generuje sekwencje liczb
+
+echo $RANDOM  # zwraca losowa liczbe
+
+Standardowe strumienie:
+stdin
+stdout  >, >>
+stderr  2>, 2>>
+2> /dev/null  komunikaty wyslij do czarnej dziury
+2>&1  przekaz stderr do stdout
+
+uniq ./random.txt | sort -n > out.txt
+less out.txt
+cat ./random.txt | wc -l
+
+find  # wyszukuje pliki w systemie
+find . -perm 664
+find . -name dir
+find . -name "*.txt"
+find . -name \*.txt
+find . -name \*.txt -type f  # type f- tylko pliki, type d - katalogi
+find . -iname \*.txt  # i - case insensitive
+find /etc -name \*.conf 2> /dev/null
+find /etc -name \*.conf 2> /dev/null | less
+
+grep  # wypisuje linie z pliku, ktore zawieraja wyszukiwany wzorzec
+grep -ir test file*.txt  # i - case insensitive, r - recursive
+grep is hello.txt
+grep is *  # przeszuka wszystkie pliki
+grep -n is *  # zwraca nr linii
+grep -n " is " *
+grep -n \ is \  *
+grep -v is *  # zwraca linie gdzie wzorzec nie wystepuje
+
+1. Znaleźć pliki w lokalizacji /usr, których nazwa zaczyna się na lib i kończy na .so
+Ile jest takich plików?
+find /usr -name lib\*.so 2> /dev/null | wc -l
+
+2. W jakich plikach w katalogu /etc/ występuje nazwa bieżącego użytkownika
+grep -r lukasz /etc/* 2> /dev/null
+grep -r `whoami` /etc/* 2> /dev/null
+whoami === $USER
+
+3. Połączyć dane z plików numbers01.txt, numbers02.txt i numbers03.txt, posortować ich zawartość.
+cat numbers01 > numbers_all
+cat numbers02 >> numbers_all
+cat numbers03 >> numbers_all
+sort -n -f numbers_all > numbers
+
+4. Ile wierszy ma połączony plik numbers.txt?
+cat numbers | wc -l
+
+5. Z pliku shakespeare.txt wyświetlić wszystkie linie, które zawierają "***"
+grep \\*\\*\\* sherlock.txt
+
+6. Z pliku shakespeare.txt wyświetlić te linie które zawierają przynajmniej 3 znaki * obok siebie
+z pominięciem linii które zawierają dokładnie 5 znaków * obok siebie.
+grep \\*\\*\\* sherlock.txt | grep -v \\*\\*\\*\\*\\* | wc -l
+
+7. Ile linii w poprzednim zadaniu zawierało ciąg 5 znaków * obok siebie.
+grep \\*\\*\\*\\*\\* sherlock.txt | wc -l
+
+8. Z pliku sherlock.txt wyświetlić wszystkie linie zawierające słowo sherlock, bez uwzględniania wielkości liter.
+9. Z pliku sherlock.txt wyświetlić wszystkie linie zawierające słowo szerlock, ale nie zawierające słowa holmes
+
+apt - instalator paczek
+sudo - uruchomienie polecenia jako administrator
+usery ktorzy sa w grupie sudo moga uruchamiac polecenie sudo
+sudo apt update
+sudo apt search sl
+sudo apt install sl
+sl  # jadaca ciuchcia
+sudo apt-get moo  # wyswietla krowke
+
