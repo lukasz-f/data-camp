@@ -1,0 +1,41 @@
+git init
+git init project
+
+git status
+
+git add file.txt
+git status
+
+git commit
+git commit -m "Komentarz"
+git commit -a -m "Komentarz"  # add and commit
+git status
+
+git log
+
+git diff
+
+git add -p  # do patchowania, interactive mode
+git rm
+git commit
+
+git branch   # wyswietla dostepne galezie
+git branch addon
+git checkout addon
+git checkout -b addon  # tworzy i przelacza na nowa galaz
+
+git checkout master
+git merge addon
+
+git branch -d addon  # usuwa galaz
+git branch -D addon  # usuwa galaz i o nic nie pyta
+
+git tag v1.0 -m "New version"
+git tag -a v1.0 -m "New version"
+git tag  # wyswietla taga
+git checkout v1.0
+
+git show v1.0
+git tag -d v1.0
+
+git commit --amend
