@@ -152,4 +152,3 @@ sudo apt search sl
 sudo apt install sl
 sl  # jadaca ciuchcia
 sudo apt-get moo  # wyswietla krowke
-
