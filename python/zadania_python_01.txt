@@ -1,0 +1,31 @@
+I.
+
+1. Statystyki wyrazów
+- Należy napisać funkcję, który stworzy statystyki wyrazów z pliku text_sample.txt
+Funkcja powinna zwracać słownik postaci
+{'słowo': 1,
+ 'słowo2': 2}
+ gdzie kluczami są słowa z pliku, a wartościami ilości ich wystąpień.
+ Funkcja powinna zliczać słowa niezależnie od wielkości liter ('słowo' jest tym samym co 'SłOwo').
+
+Należy w miarę możliwości użyć klas z modułu collections
+- Dopisać funkcję sortującą wcześniej zebrane statystyki rosnąco wg. ilości wystąpień słowa.
+- Dopisać funkcję wybierającą najdłuższe i najdłuższe słowo ze słownika statystyk
+
+2. Stworzyć narzędzie działające jak systemowa komenda tail
+Komenda powinna przyjmować jako argument plik, albo wejście z STDIN i wyświetlać na ekranie
+ostatnie 5 linii danego pliku.
+
+UWAGA: Do obsługi plików i wejścia STDIN można użyć modułu fileinput.
+
+Należy w miarę możliwości użyć klas dostępnych w module collections.
+
+
+II.
+1. Przy użyciu map() należy zaimplementować obliczanie kwadratu każdej liczby z dostarczonej listy.
+2. Zaimplementować funkcję, która z podanej listy odfiltruje liczby ujemne.
+3. Przy użyciu functools.reduce() należy zaimplementować:
+- Obliczanie sumy elementów listy.
+- Wybór maksimum z listy liczb całkowitych.
+- Łączenie (konkatenację) łańcuchów znaków z podanej listy.
+- Obliczenie silni dla podanego elementu.
