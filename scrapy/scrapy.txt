@@ -1,0 +1,31 @@
+Create project with name tutorial_spider:
+scrapy startproject tutorial_spider
+
+scrapy genspider example example.com
+
+Run Spider and write result to json file:
+scrapy runspider quotes_spider.py -o quotes.json
+
+Run Spider with name quotes:
+scrapy crawl quotes
+
+Run Scrapy shell:
+scrapy shell 'http://quotes.toscrape.com'
+
+Using CSS selectors in Scrapy shell:
+>>> response.css('title')
+[<Selector xpath='descendant-or-self::title' data='<title>Quotes to Scrape</title>'>]
+>>> response.css('title').extract()
+['<title>Quotes to Scrape</title>']
+>>> response.css('title::text').extract()
+['Quotes to Scrape']
+>>> response.css('title::text').extract_first()
+'Quotes to Scrape'
+>>> response.css('title::text')[0].extract()
+'Quotes to Scrape'
+
+Using XPath in Scrapy shell:
+>>> response.xpath('//title')
+[<Selector xpath='//title' data='<title>Quotes to Scrape</title>'>]
+>>> response.xpath('//title/text()').extract_first()
+'Quotes to Scrape'
