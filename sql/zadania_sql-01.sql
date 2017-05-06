@@ -33,5 +33,5 @@ select sum(discontinued = 1) as przerwane, sum(discontinued = 0) as nieprzerwane
 update order_details set discount = 0.1 where unit_price > 25;
 
 -- 11. Dodać pracownika o własnym imieniu i nazwisku do tabeli employees.
-insert into employees(first_name, last_name) values('Łukasz', 'Frankiewicz');
+insert into employees(first_name, last_name) values('Łukasz', 'F');
 commit;

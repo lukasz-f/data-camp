@@ -7,17 +7,15 @@ import pymysql
 import pprint
 
 
-
-
 # DictCursor
-conn = pymysql.connect(host='localhost', user='root', passwd='root', db='northwind',
+conn = pymysql.connect(host='localhost', user='root', passwd='****', db='northwind',
                        charset='utf8', cursorclass=pymysql.cursors.DictCursor)
 sql = "select * from customers where city = %s"
 city = 'New York'
 
 try:
     with conn.cursor() as cursor:
-        cursor.execute("insert into employees (first_name, last_name) values (%s, %s)", ('Łukasz', 'Frankiewicz'))
+        cursor.execute("insert into employees (first_name, last_name) values (%s, %s)", ('Łukasz', 'F'))
     conn.commit()
 
     with conn.cursor() as cursor:
@@ -29,7 +27,7 @@ finally:
     conn.close()
 
 # SSCursor
-conn = pymysql.connect(host='localhost', user='root', passwd='root', db='northwind',
+conn = pymysql.connect(host='localhost', user='root', passwd='****', db='northwind',
                        charset='utf8', cursorclass=pymysql.cursors.SSCursor)
 try:
     with conn.cursor() as cursor:
