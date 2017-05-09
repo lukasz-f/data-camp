@@ -9,7 +9,7 @@ ls -a  # wyswietla pliki ukryte
 ls -la # laczenie parametrow
 ls -h  # wyswietla rozmiary plikow zrozumiale dla ludzi
 ls -F  # wyswietla znak '/' czy folderach
-ls -t  # sortuje po ostatnio modyfikowanych
+ls -t  # sort§uje po ostatnio modyfikowanych
 ls -S  # sortuje po wielkosci pliku
 
 uprawnienia na katalogu:
@@ -90,9 +90,9 @@ stderr  2>, 2>>
 2> /dev/null  komunikaty wyslij do czarnej dziury
 2>&1  przekaz stderr do stdout
 
-uniq ./random.txt | sort -n > out.txt
+uniq ./random_numbers.txt | sort -n > out.txt
 less out.txt
-cat ./random.txt | wc -l
+cat ./random_numbers.txt | wc -l
 
 find  # wyszukuje pliki w systemie
 find . -perm 664
@@ -113,37 +113,6 @@ grep -n " is " *
 grep -n \ is \  *
 grep -v is *  # zwraca linie gdzie wzorzec nie wystepuje
 
-1. Znaleźć pliki w lokalizacji /usr, których nazwa zaczyna się na lib i kończy na .so
-Ile jest takich plików?
-find /usr -name lib\*.so 2> /dev/null | wc -l
-
-2. W jakich plikach w katalogu /etc/ występuje nazwa bieżącego użytkownika
-grep -r lukasz /etc/* 2> /dev/null
-grep -r `whoami` /etc/* 2> /dev/null
-whoami === $USER
-
-3. Połączyć dane z plików numbers01.txt, numbers02.txt i numbers03.txt, posortować ich zawartość.
-cat numbers01 > numbers_all
-cat numbers02 >> numbers_all
-cat numbers03 >> numbers_all
-sort -n -f numbers_all > numbers
-
-4. Ile wierszy ma połączony plik numbers.txt?
-cat numbers | wc -l
-
-5. Z pliku shakespeare.txt wyświetlić wszystkie linie, które zawierają "***"
-grep \\*\\*\\* sherlock.txt
-
-6. Z pliku shakespeare.txt wyświetlić te linie które zawierają przynajmniej 3 znaki * obok siebie
-z pominięciem linii które zawierają dokładnie 5 znaków * obok siebie.
-grep \\*\\*\\* sherlock.txt | grep -v \\*\\*\\*\\*\\* | wc -l
-
-7. Ile linii w poprzednim zadaniu zawierało ciąg 5 znaków * obok siebie.
-grep \\*\\*\\*\\*\\* sherlock.txt | wc -l
-
-8. Z pliku sherlock.txt wyświetlić wszystkie linie zawierające słowo sherlock, bez uwzględniania wielkości liter.
-9. Z pliku sherlock.txt wyświetlić wszystkie linie zawierające słowo szerlock, ale nie zawierające słowa holmes
-
 apt - instalator paczek
 sudo - uruchomienie polecenia jako administrator
 usery ktorzy sa w grupie sudo moga uruchamiac polecenie sudo
@@ -152,4 +121,3 @@ sudo apt search sl
 sudo apt install sl
 sl  # jadaca ciuchcia
 sudo apt-get moo  # wyswietla krowke
-
