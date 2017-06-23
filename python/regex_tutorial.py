@@ -82,6 +82,11 @@ for tuple in tuples:
     print(tuple[0])  # username
     print(tuple[1])  # host
 
+# finditer
+matchlist = re.finditer(r'([a-zA-Z]+) (\d+)', 'June 24, August 9, Dec 12')
+for match in matchlist:
+    print(match.group(1), match.group(2))  # June 24, August 9, Dec 12
+
 # Non-Capturing Group ?:
 # When parenthesis ( ) groupings in the pattern, but you don't want to extract
 str = '1st, 2nd, 3rd, 4th, 29.03.2017'
@@ -96,3 +101,4 @@ re.search(r'<.*?>', str).group()  # '<b>'
 
 # Replacement
 # re.sub(pattern, replacement_pattern, input_str, count, flags=0)
+re.sub(r'([a-zA-Z]+) (\d+)', r'\2 of \1', 'June 24, August 9, Dec 12')  # 24 of June, 9 of August, 12 of Dec
