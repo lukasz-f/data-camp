@@ -1,0 +1,22 @@
+# Create virtual environments in one place WORKON_HOME
+
+# Installation
+pip3 install virtualenv
+pip3 install virtualenvwrapper
+export WORKON_HOME=~/Envs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Create a virtual environment
+mkvirtualenv my_project
+
+# Work on a virtual environment
+workon my_project
+
+# Deactivating
+deactivate
+
+# To delete
+rmvirtualenv venv
+
+# List all of the environments
+lsvirtualenv

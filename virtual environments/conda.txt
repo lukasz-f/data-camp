@@ -1,0 +1,16 @@
+# List of all environments
+conda info --envs
+
+# Create an environment
+conda create -n [env_name]
+conda create -n [env_name] python=[python_version]
+
+# Activate the new environment
+source activate [env_name]
+
+# Install package
+conda install [package_name]
+pip install [package_name]
+
+# Deactivate the current environment
+source deactivate
