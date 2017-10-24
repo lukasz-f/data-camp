@@ -1,0 +1,6 @@
+# master - ?
+# local - ilosc procesow (moze byc liczba lub '*')
+# 2_word_count.py - nazwa skryptu
+# ./data/*.txt - parametr skryptu z danymi wejsciowymi
+# wc_out_1 - parametr skryptu na dane wyjsciowe
+spark-submit --master local[2] 2_word_count.py ./data/*.txt wc_out_1
