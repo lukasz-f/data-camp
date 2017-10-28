@@ -1,0 +1,4 @@
+Extended version of sklearn.datasets.load_digits() dataset with 28x28 images size.
+Required label and image custom reader, e.g. https://gist.github.com/ceykmc/c6f3d27bb0b406e91c27
+
+http://yann.lecun.com/exdb/mnist/
