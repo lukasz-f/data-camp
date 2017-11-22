@@ -24,3 +24,8 @@ print(*zip(mutants, aliases, powers))
 # Create dictionary from zip object
 mutant_dict = dict(zip(aliases, powers))
 print(mutant_dict)
+
+# Zip & unzip
+mutant_zip = zip(mutants, aliases, powers)
+mutants_, aliases_, powers_ = zip(*mutant_zip)
+print(mutants_, aliases_, powers_)

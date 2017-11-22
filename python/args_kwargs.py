@@ -1,5 +1,8 @@
 def print_args(*args, **kwargs):
     '''Metoda przyjmuje nieskonczona liczbe parametrow'''
+    # typy argumentow
+    print(type(args), type(kwargs))
+
     # argumenty pozycyjne
     for arg in args:
         print(arg)
