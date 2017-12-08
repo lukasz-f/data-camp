@@ -7,6 +7,9 @@ file = 'battledeath.xlsx'
 # Load spreadsheet
 xl = pd.ExcelFile(file)
 
+# Print xl type
+print(type(xl))
+
 # Print sheet names
 print(xl.sheet_names)
 
