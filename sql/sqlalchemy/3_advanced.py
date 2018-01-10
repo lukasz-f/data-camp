@@ -104,9 +104,11 @@ for record in results:
 
 
 # Hierarchical Tables #
+# Define table
 engine_empl = create_engine('sqlite:///employees.sqlite')
 con_empl = engine_empl.connect()
-employees = Table('employees', metadata, autoload=True, autoload_with=con_empl)
+metadata_empl = MetaData()
+employees = Table('employees', metadata_empl, autoload=True, autoload_with=con_empl)
 
 # Make an alias of the employees table
 managers = employees.alias()
