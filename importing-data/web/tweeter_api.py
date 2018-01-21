@@ -10,10 +10,10 @@ from my_stream_listener.MyStreamListener import MyStreamListener
 
 # API Authentication #
 # Store OAuth authentication credentials in relevant variables
-access_token = "1092294848-aHN7DcRP9B4VMTQIhwqOYiB14YkW92fFO8k8EPy"
-access_token_secret = "X4dHmhPfaksHcQ7SCbmZa2oYBBVSD2g8uIHXsp5CTaksx"
-consumer_key = "nZ6EA0FxZ293SxGNg8g8aP0HM"
-consumer_secret = "fJGEodwe3KiKUnsYJC3VRndj7jevVvXbK2D5EiJ2nehafRgA6i"
+access_token = "951209803480748033-OwEF6io8W0CszzGhKzD3tfp0BzdulWH"
+access_token_secret = "MzgVvkpONl6eTHDE5O20Jw0Wep4YJgNZtkLAubAEicWV2"
+consumer_key = "k5D83nN0PHHa4Nc3ud8HQgrrZ"
+consumer_secret = "Rz9rnTv8v0CWVQuO3rRlPmtCAoN9qckgUIxEvQoUnzQJeg8WXx"
 
 # Pass OAuth details to tweepy's OAuth handler
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
