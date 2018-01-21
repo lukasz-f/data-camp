@@ -154,3 +154,9 @@ np.where(np_numbers2d > 5)  # (array([1, 1, 1]), array([0, 1, 2]))
 np_numbers2d[np.where(np_numbers2d > 5)] = 99  # array([[1, 2, 3], [99, 99, 99]])
 np_numbers2d[np.where(np_numbers2d > 5)]  # array([99, 99, 99])
 np_numbers2d[np_numbers2d > 5]  # array([99, 99, 99])
+
+# Iterating over arrays (memory layout order)
+np.nditer(np_numbers2d)  # => 1, 2, 3, 11, 22, 33
+np.nditer(np_numbers2d.T)  # => 1, 2, 3, 11, 22, 33
+np.nditer(np_numbers2d.T.copy())  # => 1, 11, 2, 22, 3, 33
+np.nditer([np_numbers2d[0], np_numbers2d[1]])  # => (1, 11), (2, 22), (3, 33)
