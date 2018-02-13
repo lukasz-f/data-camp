@@ -1,3 +1,6 @@
+# Import reduce from functools
+from functools import reduce
+
 # Create a list of strings
 spells = ["protego", "accio", "expecto patronum", "legilimens"]
 
@@ -9,6 +12,12 @@ shout_spells_list = list(shout_spells)
 
 # Convert shout_spells into a list and print it
 print(shout_spells_list)
+
+
+# Convert list of strings to floats with map
+s_list = ['1', '2', '3']
+f_map = map(float, s_list)
+print(list(f_map))
 
 
 # Create a list of strings
@@ -23,9 +32,6 @@ result_list = list(result)
 # Convert result into a list and print it
 print(result_list)
 
-
-# Import reduce from functools
-from functools import reduce
 
 # Create a list of strings
 stark = ['robb', 'sansa', 'arya', 'eddard', 'jon']
