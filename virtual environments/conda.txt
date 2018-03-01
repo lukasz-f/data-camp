@@ -11,6 +11,8 @@ source activate [env_name]
 # Install package
 conda install [package_name]
 pip install [package_name]
+# pip install will install into whatever environment pip itself is installed into and running from
+# globally to ~/Users/user/anaconda/lib/python3.6/site-packages or current conda environment
 
 # Deactivate the current environment
 source deactivate
