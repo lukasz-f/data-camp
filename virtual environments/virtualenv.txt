@@ -23,3 +23,9 @@ pip list
 # installed package list
 pip freeze > requirements.txt
 pip install -r requirements.txt
+
+# install from git repo
+pip install git+https://github.com/user/repo.git@branch
+
+# install from git repo zip file
+pip install https://github.com/user/repo/archive/branch.zip
