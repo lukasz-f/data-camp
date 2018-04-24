@@ -1,1 +1,2 @@
-ml/Dane/creditcard.csv filter=lfs diff=lfs merge=lfs -text
+datasets/School[[:space:]]Budgets/TrainingData.csv filter=lfs diff=lfs merge=lfs -text
+datasets/School[[:space:]]Budgets/predictions.csv filter=lfs diff=lfs merge=lfs -text
