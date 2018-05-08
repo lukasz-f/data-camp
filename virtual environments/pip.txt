@@ -1,0 +1,24 @@
+# installed package info
+pip list
+
+# outdated packages list
+pip list --outdated
+
+# package installation
+pip install requests
+
+# update package pip, setuptools, wheel
+pip install --upgrade pip setuptools wheel
+
+# uninstall package
+pip uninstall
+
+# installed package list
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+# install from git repo
+pip install git+https://github.com/user/repo.git@branch
+
+# install from git repo zip file
+pip install https://github.com/user/repo/archive/branch.zip

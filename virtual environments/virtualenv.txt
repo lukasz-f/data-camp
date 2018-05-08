@@ -1,31 +1,21 @@
+### virtualenv tries to copy the Python binary into the virtual environment's bin directory
+
 # instalation
-pip3 install virtualenv
+[path_to_python/bin/]pip3 install virtualenv
 virtualenv --version
 
+# create virtual environment for a project inside project folder
+cd my_project_folder
+[path_to_python/bin/]virtualenv venv
+
 # virtual environment creation (with default python version)
-virtualenv env_folder
+[path_to_python/bin/]virtualenv env_folder
 
 # creation with specific python version
-virtualenv -p /usr/bin/python2.7 env_27_folder
+[path_to_python/bin/]virtualenv -p /usr/bin/python2.7 env_27_folder
 
 # virtual environment activation
 source env_folder/bin/activate
 
 # virtual environment deactivation
 deactivate
-
-# virtual environment package installation
-pip install requests
-
-# installed package info
-pip list
-
-# installed package list
-pip freeze > requirements.txt
-pip install -r requirements.txt
-
-# install from git repo
-pip install git+https://github.com/user/repo.git@branch
-
-# install from git repo zip file
-pip install https://github.com/user/repo/archive/branch.zip

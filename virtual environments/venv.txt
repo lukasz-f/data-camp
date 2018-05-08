@@ -1,0 +1,11 @@
+### venv creates virtual environments in the shell that are fresh and sandboxed,
+### with user-installable libraries, and it's multi-python safe.
+
+# create virtual environment inside venv folder
+python3 -m venv venv
+
+# virtual environment activation
+source venv/bin/activate
+
+# virtual environment deactivation
+deactivate
