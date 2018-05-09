@@ -1,0 +1,25 @@
+# where python is installed
+which python
+
+# folders on PATH environment variable
+$PATH
+
+# change global PATH environment variable
+/etc/paths
+
+# change user PATH environment variable
+~/.bash_profile
+
+# pre-installed python
+/usr/bin/python  # 2.7.10
+/System/Library/Frameworks/Python.framework/Versions/2.7/bin  # 2.7.10
+
+# python.pkg installation
+/usr/local/bin/python3  -> /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
+/Library/Frameworks/Python.framework/Versions/3.6/bin/python3  # 3.6.5
+
+# Anaconda
+/Users/lukasz/anaconda/bin/python
+
+# Brew installation
+# /usr/local/bin/python3 link conflict with python.pkg

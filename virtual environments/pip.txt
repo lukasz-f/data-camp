@@ -10,8 +10,8 @@ pip install requests
 # update package pip, setuptools, wheel
 pip install --upgrade pip setuptools wheel
 
-# uninstall package
-pip uninstall
+# package uninstallation
+pip uninstall requests
 
 # installed package list
 pip freeze > requirements.txt
