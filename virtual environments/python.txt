@@ -15,11 +15,14 @@ $PATH
 /System/Library/Frameworks/Python.framework/Versions/2.7/bin  # 2.7.10
 
 # python.pkg installation
-/usr/local/bin/python3  -> /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
+# /usr/local/bin/python3 link conflict with brew
+/usr/local/bin/python3 -> /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 /Library/Frameworks/Python.framework/Versions/3.6/bin/python3  # 3.6.5
 
 # Anaconda
 /Users/lukasz/anaconda/bin/python
 
-# Brew installation
+# brew installation
 # /usr/local/bin/python3 link conflict with python.pkg
+/usr/local/bin/python3 -> /usr/local/Cellar/python/3.6.5/bin/python3
+/usr/local/Cellar/python/3.6.5/bin/python3
