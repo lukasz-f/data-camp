@@ -1,0 +1,85 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        },
+
+        "json": {
+            "class": "logmatic.JsonFormatter",
+            "format": "%(asctime) %(name) %(processName) %(filename) %(funcName) %(levelname) %(lineno) %(module) %(threadName) %(message)"
+        },
+
+        "pretty_json": {
+            "class": "roboto_common.pretty_logging.PrettyJsonFormatter",
+            "format": "%(asctime) %(name) %(processName) %(filename) %(funcName) %(levelname) %(lineno) %(module) %(threadName) %(message)"
+        }
+    },
+
+    "handlers": {
+        "console_simple": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
+        },
+
+        "file_handler_simple": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "formatter": "simple",
+            "filename": "roboto_job.log",
+            "maxBytes": 10485760,
+            "backupCount": 20,
+            "encoding": "utf8"
+        },
+
+        "console_json": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "json",
+            "stream": "ext://sys.stdout"
+        },
+
+        "file_handler_json": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "formatter": "json",
+            "filename": "roboto_job.log",
+            "maxBytes": 10485760,
+            "backupCount": 20,
+            "encoding": "utf8"
+        },
+
+        "console_pretty_json": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "pretty_json",
+            "stream": "ext://sys.stdout"
+        },
+
+        "file_handler_pretty_json": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "level": "INFO",
+            "formatter": "pretty_json",
+            "filename": "roboto_job.log",
+            "maxBytes": 10485760,
+            "backupCount": 20,
+            "encoding": "utf8"
+        }
+    },
+
+    "loggers": {
+        "job_server.src.core.training": {
+            "level": "ERROR",
+            "handlers": ["console_simple"],
+            "propagate": "no"
+        }
+    },
+
+    "root": {
+        "level": "INFO",
+        "handlers": ["console_pretty_json", "file_handler_json"]
+    }
+}
