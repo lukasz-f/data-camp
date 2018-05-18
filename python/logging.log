@@ -1,0 +1,5 @@
+Exception message
+Traceback (most recent call last):
+  File "/Users/lukasz/Documents/Data Science Repos/lukasz-f/data-camp/python/logging_.py", line 65, in <module>
+    raise Exception()
+Exception
