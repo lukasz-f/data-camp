@@ -11,11 +11,16 @@ import pprint
 conn = pymysql.connect(host='localhost', user='root', passwd='****', db='northwind',
                        charset='utf8', cursorclass=pymysql.cursors.DictCursor)
 sql = "select * from customers where city = %s"
+# sql = "select * from customers where city=?"
 city = 'New York'
+
+insert_query = "insert into employees (first_name, last_name) values (?, ?)"
 
 try:
     with conn.cursor() as cursor:
         cursor.execute("insert into employees (first_name, last_name) values (%s, %s)", ('Łukasz', 'F'))
+        cursor.execute(insert_query, ('Lukasz', 'F'))
+        cursor.executemany(insert_query, [('Ł', 'F'), ('ł', 'f')])
     conn.commit()
 
     with conn.cursor() as cursor:
