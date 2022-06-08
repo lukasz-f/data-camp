@@ -1,0 +1,1 @@
+from .myscript import myfunc
