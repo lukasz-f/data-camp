@@ -2,6 +2,7 @@ from datetime import datetime, date, timedelta
 from datetime import timezone as datetime_timezone
 from pytz import timezone as pytz_timezone
 from dateutil import tz as dateutil_timezone
+from zoneinfo import ZoneInfo  # Python 3.9
 
 
 print('Strings to Dates')
@@ -130,9 +131,11 @@ print(dt.isoformat())
 # Create a Timezone object for Chicago and New York
 chicago_usa_tz = pytz_timezone('US/Central')
 # chicago_usa_tz = dateutil_timezone.gettz('US/Central')
+# chicago_usa_tz = ZoneInfo("US/Central")
 
 ny_usa_tz = pytz_timezone('US/Eastern')
 # ny_usa_tz = dateutil_timezone.gettz('US/Eastern')
+# ny_usa_tz = ZoneInfo("US/Eastern")
 
 # Iterate over the datetimes list
 for orig_dt in datetimes_list:
