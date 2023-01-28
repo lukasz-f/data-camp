@@ -1,0 +1,70 @@
+# Downloading data using curl
+curl [flags] URL
+curl supports HTTP, HTTPS, FTP, SFTP
+curl -O https://websitename.com/datafilename.txt  # save file with original name
+curl -o renameddatafilename.txt https://websitename.com/datafilename.txt  # save file as renameddatafilename.txt
+curl -O https://websitename.com/datafilename*.txt  # save files datafilename001.txt, datafilename002.txt, ...
+curl -O https://websitename.com/datafilename[001-100].txt  # save files datafilename001.txt, datafilename002.txt, ..., datafilename100.txt
+curl -O https://websitename.com/datafilename[001-100:10].txt  # save files datafilename010.txt, datafilename020.txt, ..., datafilename100.txt
+curl -L https://websitename.com/datafilename*.txt  # redirects HTTP URL if 300 error code
+curl -C https://websitename.com/datafilename*.txt  # resume previous file transfer if it times out
+
+# Downloading data using Wget
+wget [flags] URL
+wget supports HTTP, HTTPS, FTP, SFTP
+wget flags:
+-b: goto background after startup (save logs to wget-log)
+-q: turn off output
+-c: resume broken download
+-i url_list.txt: download from URL stored in file
+--limit-rate=200k: set upper download bandwidth limit
+--wait={seconds}: set pause time
+
+# Data Cleaning and Munging on the Command Line with csvkit
+pip install csvkit
+in2csv: converting files to csv
+in2csv -h  # print manual for in2csv
+in2csv SpotifyData.xlsx > SpotifyData.csv  # convert and save to csv file
+in2csv -n SpotifyData.xlsx  # print all sheet names
+in2csv SpotifyData.xlsx --sheet "Worksheet1"  # select sheet
+csvlook: renders CSV to command line
+csvlook -h  # print manual for csvlook
+csvlook Spotify_Popularity.csv
+csvstat: prints descriptive summary statistics on all columns in CSV
+csvstat Spotify_Popularity.csv
+csvcut: filters and trancates CSV file by column name or column position
+csvcut -h  # print manual for csvcut
+csvcut -n Spotify_Popularity.csv  # print all column names
+csvcut -c 1 Spotify_Popularity.csv  # return first column
+csvcut -c 2,3 Spotify_Popularity.csv  # return second and third column
+csvcut -c "column_name" Spotify_Popularity.csv  # return column with name column_name
+csvcut -c column1,column2 Spotify_Popularity.csv  # return columns with name column1 and column2
+csvgrep: filters data using value using exact match, pattern matching, or regex
+csvgrep -h  # print manual for csvgrep
+csvgrep -c county -m HOLT new_file.csv  # search for text HOLT in country column
+csvgrep -r  # search by regex pattern
+csvgrep -f  # search by a path to a file
+csvstack:  stacks up the rows from two or more CSV files
+csvstack -h  # print manual for csvstack
+csvstack Spotify_Rank5.csv Spotify_Rank6.csv > Spotify_AllRanks.csv
+csvstack -g Rank5,Rank6 Spotify_Rank5.csv -n source Spotify_Rank6.csv > Spotify_AllRanks.csv  # adds column 'source' with values Rank5 or Rank6
+csvcut -c county,total_cost,ship_date new_file.csv | csvlook
+csvcut -c total_cost,ship_date new_file.csv | csvstat
+csvcut -c county,total_cost new_file.csv | csvgrep -c county -m "HOLT" | csvlook
+
+# Database Operations on the Command Line
+sql2csv: execute SQL query on db
+supported DB: MySQL, PostgreSQL, MS SQL, Oracle, Sqlite, ...
+sql2csv -h  # print manual for sql2csv
+sql2csv --db "sqlite:///SpotifyDatabase.db" --query "SELECT * FROM Spotify_Popularity" > Spotify_Popularity.csv  # connect to Sqlite
+sql2csv --db "postgres:///..." --query "SELECT * FROM Spotify_Popularity" > Spotify_Popularity.csv  # connect to PostgreSQL
+csvsql: applies SQL statements to one or more CSV files, supports select data, insert data and table creation
+csvsql -h  # print manual for csvsql
+csvsql --query "SELECT * FROM Spotify_MusicAttributes LIMIT 1" Spotify_MusicAttributes.csv | csvlook  # query one CSV file
+csvsql --query="SELECT * FROM Spotify_MusicAttributes INNER JOIN Spotify_Popularity using (track_id)" \
+        Spotify_MusicAttributes.csv Spotify_Popularity.csv  # query more CSV files
+sqlquery="SELECT * FROM Spotify_MusicAttributes ORDER BY duration_ms LIMIT 1"
+csvsql --query "$sqlquery" Spotify_MusicAttributes.csv  # query with shell variable
+csvsql --db "sqlite:///SpotifyDatabase.db" --insert Spotify_Popularity.csv  # push data to DB
+csvsql --no-inference --db ... --insert ...  # disable type inference when parsing the input
+csvsql --no-constraints --db ... --insert ...  # generate schema without length limits or null checks

@@ -1,0 +1,181 @@
+#!/usr/bash  # first line of script (she-bang)
+# This is a single-line comment
+which bash  # finds bash location
+.sh  # script file extension (just convention, not required if file has she-bang)
+bash steps.sh  # run the commands from steps.sh
+
+# standard streams
+bash steps.sh > dates.out  # re-use pipes
+cat file.txt 1> new_file.txt  # writing stdout to new file
+2> /dev/null  # delete stderr
+1> /dev/null  # delete stdout
+cmd1 | cmd2 | cmd3  # cmd1 stdout is cmd2 stdin, cmd2 stdout is cmd3 stdin, cmd3 stdout to terminal
+set  # displays and sets the names and values of shell and Linux environment variables
+
+# command line arguments
+$@ used inside script file  # all of the command-line parameters given to the script
+$1 used inside script file  # first command-line parameter given to the script
+$2 used inside script file  # second command-line parameter given to the script
+$# used inside script file  # number of arguments
+echo 'sort $@ | uniq' > unique-lines.sh; bash unique-lines.sh seasonal/summer.csv seasonal/autumn.csv  # find unique lines in two data files
+echo 'head -n $2 $1 | tail -n 1 | cut -d , -f $3' > get-field.sh; bash get-field.sh seasonal/summer.csv 4 2  # select row and column from csv
+
+# variables
+training=seasonal/summer.csv  # define environment variable
+echo $training  # print a variable's value
+
+# quotations
+current_date=date
+echo '$current_date'  # single quotes prints: $current_date
+echo "$current_date"  # double quotes prints: date
+echo `$current_date`  # backticks prints: Sat Dec 3 20:55:46 CET 2022
+echo "The date is `date`."  # shell within a shell: backticks
+echo "The date is $(date)."  # shell within a shell: equivalent to backtick notation
+temp_a=$(cat temps/region_A)  # read file to variable
+
+# numbers are not natively supported
+1 + 4  # too many arguments
+expr 1 + 4  # 5
+echo $((1 + 4))  # equivalent to expr
+expr 1 + 1.5  # decimal not supported
+echo "1 + 1.5" | bc  # basic calculator
+echo "10 / 3" | bc  # 3
+echo "scale=3; 10 / 3" | bc  # 3.333
+decimal1=1.1; decimal2=2.2
+echo "The sum is $(echo "$decimal1 + $decimal2" | bc)"  # 3.3
+
+# arrays
+declare -a my_array  # declare empty array
+my_array=(11 22 33 44 55)  # declare array
+echo ${my_array[@]}  # print all elements
+echo ${my_array[1]}  # print first element in zsh, second element in bash
+echo ${my_array[@]:3:2}  # array slicing
+my_array+=(66 77)  # appending to array
+echo ${#my_array[@]}  # print array length
+my_array[1]=999  # assign new value
+declare -A dict=([a]=1 [b]=2)  # define associative array
+${dict[a]}  # return value
+${!dict[@]}  # return all keys
+
+# Creating new tools
+nano filename  # open filename in nano text editor
+nano commands:
+Ctrl + K: delete a line. (copy)
+Ctrl + U: un-delete a line. (paste)
+Ctrl + O: save the file ('O' stands for 'output'). You will also need to press Enter to confirm the filename!
+Ctrl + X: exit the editor.
+history | tail -n 3 | head -n -1 | cut -c 8- > steps.sh  # save commands to re-run later (last two commands)
+
+# IF Statements
+x="Queen"
+if [ $x == "King" ]; then  # string comparison
+    echo "$x is a King!"
+else
+    echo "$x is not a King!"
+fi
+x=10
+if [ $x -gt 5 ]; then  # arithmetic comparison with square brackers and -eq, -ne, -lt, -le, -gt, -ge
+    echo "$x is more than 5!"
+fi
+if (($x > 5)); then  # arithmetic comparison with double parentheses and ==, !=, <, <=, >, >=
+    echo "$x is more than 5!"
+fi
+file=/etc/resolv.conf
+if [ -e $file ]; then  # -e file exists; -s file exists and size > 0; -r file exists and readable; -w file exists and writable
+    echo "$file found."
+fi
+if $(grep -q Hello $file); then  # find 'Hello' word in file
+  echo "Hello is inside!"
+fi
+if [ $x -gt 5 ] && [ $x -lt 11 ]; then
+   echo "$x is more than 5 and less than 11!"
+fi
+if [[ $x -gt 5 && $x -lt 11 ]]; then
+   echo "$x is more than 5 and less than 11!"
+fi
+if grep -q Hello $file && grep -q Aloha $file ; then  # find 'Hello' and 'Aloha' words in file
+  echo "Hello and Aloha is inside!"
+fi
+
+# FOR loops
+for x in {1..5..2}  # {start..stop..increment}
+do
+    echo $x  # 1 3 5
+done
+for ((x=2;x<=4;x+=2))  # ((start expression;terminating condition; increment expression))
+do
+    echo $x  # 2 4
+done
+for book in $(ls books/ | grep -i 'air')  # iterate over files inside books folder that have 'air' in file name
+do
+    echo $book
+done
+for filetype in gif jpg png; do echo $filetype; done  # repeat a command many times
+files=seasonal/*.csv  # record the names of a set of files
+for filename in $files; do echo $filename; done  # print csv filenames
+for file in seasonal/*.csv; do head -n 2 $file | tail -n 1; done  # run many commands in a single loop
+for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done  # many things in a single loop
+for filename in $@
+do
+    head -n 2 $filename | tail -n 1
+    tail -n 1 $filename
+done
+
+# WHILE loops
+x=1
+while [ $x -le 3 ];
+do
+    echo $x
+    ((x+=1))
+done
+
+# CASE statements
+case 'STRING' in
+    PATTERN1)
+    COMMAND1;;
+    PATTERN2)
+    COMMAND2;;
+    *)
+    DEFAULT COMMAND;;
+esac
+case $1 in
+  Monday|Tuesday|Wednesday|Thursday|Friday)
+  echo "It is a Weekday!";;
+  Saturday|Sunday)
+  echo "It is a Weekend!";;
+  *)
+  echo "Not a day!";;
+esac
+for file in model_out/*
+do
+    case $(cat $file) in
+      *"Random Forest"*|*GBM*|*XGBoost*)
+      mv $file tree_models/ ;;
+      *KNN*|*Logistic*)
+      rm $file ;;
+      *)
+      echo "Unknown model in $file" ;;
+    esac
+done
+
+# Functions
+function convert_temp {
+    temp_c=$(echo "scale=2; ($1 - 32) * 5 / 9" | bc)
+    echo $temp_c
+}
+convert_temp 30  # call function
+converted=$(convert_temp 30)  # capture returned value
+echo "30F in Celsius is $converted C"
+echo $temp_c  # variables in Bash are global
+# The return option in Bash is only meant to determine if the function was a success (0) or failure (other values 1-255). It is captured in the global variable $?
+function sum_array () {
+  local sum=0
+  for number in "$@"
+  do
+    sum=$(echo "$sum + $number" | bc)
+  done
+  echo $sum
+}
+test_array=(14 12 23.5 16 19.34)
+total=$(sum_array "${test_array[@]}")
+echo "The total sum of the test array is $total"

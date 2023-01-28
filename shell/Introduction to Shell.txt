@@ -1,0 +1,77 @@
+# Manipulating files and directories
+pwd  # show where you are
+ls  # identify files and directories
+ls /home  # move to another directory
+ls ./documents
+ls ~/../.
+ls -R  # list everything below a directory
+ls -F  # prints a / after the name of every directory and a * after the name of every runnable program
+cd  # go to your home directory
+cd ~  # go to your home directory
+cd ..  # move up a directory
+cp original.txt duplicate.txt  # copy and rename file
+cp seasonal/autumn.csv seasonal/winter.csv backup  # copy files to backup directory
+mv course.txt old-course.txt  # rename files
+mv autumn.csv winter.csv ..  # move files
+rm thesis.txt backup/thesis-2017-08.txt  # delete files
+rmdir seasonal  # delete empty folder
+mkdir yearly  # create directory
+mkdir yearly/2017  # create directory 2017 inside yearly directory if yearly directory exists
+
+# Manipulating data
+cat agarwal.txt  # view a file's contents
+cat *.txt  # view all .txt files
+less agarwal.txt  # view a file's contents piece by piece
+less seasonal/spring.csv seasonal/summer.csv  # Press 'spacebar' to page down, ':n' to go to the second file, ':q' to quit
+head seasonal/summer.csv  # look at the start of a file
+head -n 5 seasonal/summer.csv  # display first 5 lines
+head -n -1 seasonal/summer.csv  # display without last line
+tail --help  # help for a command
+man tail  # command manual
+tail -n +7 seasonal/summer.csv  # display all but the first six lines
+cut -f 2-5,8 -d , values.csv  # select columns 2 through 5 and columns 8, using comma as the separator
+# cut doesn't understand quoted strings: "Johel,Ranjit",28
+paste -d , seasonal/autumn.csv seasonal/winter.csv  # combine files in a single table using a comma as a separator
+grep bicuspid seasonal/winter.csv  # selects lines containing bicuspid
+grep -v bicuspid seasonal/winter.csv  # selects lines not containing bicuspid
+grep -c incisor seasonal/autumn.csv seasonal/winter.csv  # count how many lines contain the word
+grep flags:
+-c: print a count of matching lines rather than the lines themselves
+-h: do not print the names of files when searching multiple files
+-i: ignore case (e.g., treat "Regression" and "regression" as matches)
+-l: print the names of files that contain matches, not the matches
+-n: print line numbers for matching lines
+-v: invert the match, i.e., only show lines that don't match
+grep '[pc]' seasonal/winter.csv  # selects lines containing 'p' or 'c' letter
+grep '[^pc]' seasonal/winter.csv  # selects lines not containing 'p' and 'c' letter
+grep -E 'bicuspid|incisor' seasonal/winter.csv  # selects lines with bicuspid or incisor word
+egrep 'bicuspid|incisor' seasonal/winter.csv == grep -E 'bicuspid|incisor' seasonal/winter.csv
+
+history  # display command history
+!1  # run command nr 1 from command history
+!head  # run last head command
+
+set 's/unix/linux/g' seasonal/winter.csv  # replace all occurances of the unix with linux in line
+
+# Combining tools
+head -n 5 seasonal/summer.csv > top.csv  # store a command's output in a file
+head -n 5 seasonal/summer.csv | tail -n 3  # use a command's output as an input
+cut -f 2 -d , seasonal/summer.csv | grep -v Tooth | head -n 1  # combine many commands
+wc -w seasonal/spring.csv  # count words in a file
+grep 2017-07 seasonal/spring.csv | wc -l  # count the lines in a file
+cut -d , -f 1 seasonal/winter.csv seasonal/spring.csv seasonal/summer.csv  # specify many files at once
+cut -d , -f 1 seasonal/*  # specify many files at once
+shell wildcards:
+* matches zero or more characters
+201?.txt matches a single character: 2017.txt, 2018.txt
+201[78] matches any one of the characters inside the square brackets: 2017, 2018
+{*.txt, *.csv} matches any file whose name ends with .txt or .csv
+cut -d , -f 2 seasonal/summer.csv | grep -v Tooth | sort  # sort in ascending alphabetical order
+sort flags:
+-n: ascending numerical order
+-r: reverse order
+-b: ignore leading blanks
+-f: fold case (i.e., be case-insensitive)
+cut -d , -f 2 seasonal/summer.csv | grep -v Tooth | sort | uniq  # remove duplicate lines
+cut -d , -f 2 seasonal/summer.csv | sort | uniq -c  # count number of each word
+wc -l seasonal/* | grep -v total | sort -n | head -n 1  # how many records are in the shortest file
