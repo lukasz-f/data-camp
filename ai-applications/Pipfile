@@ -5,7 +5,21 @@ name = "pypi"
 
 [packages]
 jupyter = "==1.1.1"
-openai = "==1.54.3"
+openai = "==1.54.4"
+huggingface-hub = "==0.26.2"
+transformers = "==4.46.2"
+datasets = "==3.1.0"
+torch = "==2.5.1"
+pillow = "==11.0.0"
+numpy = "==2.0.2"
+matplotlib = "==3.9.2"
+soundfile = "==0.12.1"
+librosa = "==0.10.2.post1"
+evaluate = "==0.4.3"
+jiwer = "==3.0.5"
+pandas = "==2.2.3"
+accelerate = "1.1.1"
+sentence_transformers = "==3.3.0"
 
 [dev-packages]
 
