@@ -29,6 +29,7 @@ wikipedia = "==1.4.0"
 pypdf = "==5.1.0"
 unstructured = "==0.16.5"
 langchain-chroma = "==0.1.4"
+tiktoken = "==0.8.0"
 
 [dev-packages]
 
